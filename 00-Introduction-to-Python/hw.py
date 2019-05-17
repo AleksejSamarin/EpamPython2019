@@ -7,6 +7,7 @@
 являются существенными.
 """
 
+
 def is_permutation(a: str, b: str) -> bool:
     # Нужно проверить, являются ли строчки 'a' и 'b' перестановками
     return sorted(a) == sorted(b)
