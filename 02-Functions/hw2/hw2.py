@@ -1,5 +1,4 @@
-def atom(init_value=None):
-    variable = init_value
+def atom(variable=None):
 
     def get_value():
         return variable
@@ -16,9 +15,9 @@ def atom(init_value=None):
         return variable
 
     def delete_value():
-        pass
+        nonlocal variable
+        del variable
 
-    local_vars = [*locals().keys()]
     return get_value, set_value, process_value, delete_value
 
 
@@ -27,3 +26,4 @@ if __name__ == '__main__':
     func[1](100)
     func[2](chr, ord, chr)
     func[3]()
+    print(func[0]())
