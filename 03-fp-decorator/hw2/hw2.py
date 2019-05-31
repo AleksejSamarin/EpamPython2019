@@ -2,10 +2,9 @@ from functools import reduce
 
 
 def is_armstrong(number):
-    string = str(number)
-    length = len(string)
-    result = reduce(lambda x, y: x + y, [int(x)**length for x in string]) == number
-    return result
+    # string = str(number)
+    # length = len(string)
+    return reduce(lambda x, y: x + y, [int(x)**len(str(number)) for x in str(number)]) == number
 
 
 assert is_armstrong(153), 'Armstrong number'
