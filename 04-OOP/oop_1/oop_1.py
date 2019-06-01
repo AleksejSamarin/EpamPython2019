@@ -37,14 +37,15 @@ PEP8 соблюдать строго, проверку делаю автотес
 К названием остальных переменных, классов и тд. подходить ответственно -
 давать логичные подходящие имена.
 """
-import datetime
+
+from classes import Student, Teacher
 
 
 if __name__ == '__main__':
     teacher = Teacher('Daniil', 'Shadrin')
     student = Student('Roman', 'Petrov')
-    teacher.last_name  # Daniil
-    student.first_name  # Petrov
+    teacher.last_name  # Shadrin
+    student.first_name  # Roman
 
     expired_homework = teacher.create_homework('Learn functions', 0)
     expired_homework.created  # Example: 2019-05-26 16:44:30.688762
