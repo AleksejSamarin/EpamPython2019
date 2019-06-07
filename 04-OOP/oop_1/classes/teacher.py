@@ -7,6 +7,6 @@ class Teacher:
         self.first_name = first_name
         self.last_name = last_name
 
-    @classmethod
-    def create_homework(cls, text: str, days: int) -> Homework:
+    @staticmethod
+    def create_homework(text: str, days: int) -> Homework:
         return Homework(text, days)

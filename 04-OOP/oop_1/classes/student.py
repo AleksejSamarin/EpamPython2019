@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Optional
 from .homework import Homework
 
 
@@ -8,9 +8,8 @@ class Student:
         self.first_name = first_name
         self.last_name = last_name
 
-    @classmethod
-    def do_homework(cls, homework: Homework) -> Union[Homework, None]:
+    @staticmethod
+    def do_homework(homework: Homework) -> Optional[Homework]:
         if homework.is_active():
             return homework
         print('You are late')
-        return None
