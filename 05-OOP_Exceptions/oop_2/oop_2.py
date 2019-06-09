@@ -49,8 +49,8 @@ PEP8 соблюдать строго, проверку делаю автотес
 К названием остальных переменных, классов и тд. подходить ответственно -
 давать логичные подходящие имена.
 """
-import datetime
-from collections import defaultdict
+
+from classes import HomeworkResult, Student, Teacher
 
 
 if __name__ == '__main__':
