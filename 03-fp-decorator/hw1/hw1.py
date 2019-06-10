@@ -5,8 +5,8 @@ def problem_6_solver(data: list):
     return sum([i for i in data])**2 - sum([i**2 for i in data])
 
 
-def problem_9_solver(val) -> tuple:
-    return [(a, b, c) for a in range(0, val // 3) for b in range(0, val // 2) for c in range(val // 3, val)
+def problem_9_solver(val):
+    return [a * b * c for a in range(0, val // 3) for b in range(0, val // 2) for c in range(val // 3, val)
             if ((a**2 + b**2) == c**2 and (a < b < c) and ((a + b + c) == val))][0]
 
 
