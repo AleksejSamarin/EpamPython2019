@@ -35,11 +35,7 @@ class PrintableFolder:
         return result
 
     def __contains__(self, file):
-        for _, _, files in self.content:
-            for f in files:
-                if f == file.name:
-                    return True
-        return False
+        return [True for _, _, files in self.content for f in files if f == file.name]
 
 
 class PrintableFile:
