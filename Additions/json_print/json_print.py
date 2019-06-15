@@ -19,10 +19,10 @@ def json_pretty_print(s: str) -> Iterable[str]:
     tabs_count = 0
     result_list = s.split('\n')
     for idx, string in enumerate(result_list):
-        if string.count('}') or string.count(']'):
+        if string.find('}') != -1 or string.find(']') != -1:
             tabs_count -= 1
         result_list[idx] = '\t' * tabs_count + string
-        if string.count('[') or string.count('{') or string.endswith(': '):
+        if string.find('[') != -1 or string.find('{') != -1 or string.endswith(': '):
             tabs_count += 1
     return result_list
 
