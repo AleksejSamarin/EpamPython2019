@@ -19,7 +19,7 @@ class Graph:
         while len(self.passed) < self.vertices_count:
             for vertice in self.vertices:
                 if vertice not in self.passed:
-                    self.to_pass.extend(E[vertice])
+                    self.to_pass.extend(self.E[vertice])
                     self.passed.append(vertice)
                     return vertice
             self.vertices = self.to_pass[:]
@@ -29,8 +29,8 @@ class Graph:
     def __iter__(self):
         self.to_pass = []
         self.is_first = True
-        self.first_key, self.vertices = tuple(E.items())[0]
-        self.vertices_count = len(E.items())
+        self.first_key, self.vertices = tuple(self.E.items())[0]
+        self.vertices_count = len(self.E.items())
         self.passed = [self.first_key]
         return self
 
