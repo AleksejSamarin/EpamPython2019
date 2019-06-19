@@ -17,7 +17,7 @@ from typing import Iterable
 #     return json.dumps(json.loads(s), indent=4).split('\n')
 
 
-def json_pretty_print(s: str):
+def json_pretty_print(s: str) -> Iterable[str]:
     string_tuples = [(*match.span(), match.group()) for match in re.finditer(r'".+?"', s)]
     for string in string_tuples:
         s = s.replace(string[2], '|'.join([str(string[idx]) for idx in range(2)]))
