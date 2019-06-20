@@ -12,11 +12,24 @@ class Graph:
     def __init__(self, E):
         self.E = E
 
+    def __iter__(self):
+        return GraphIterator(self)
+
+
+class GraphIterator:
+    def __init__(self, graph):
+        self.E = graph.E
+        self.to_pass = []
+        self.is_first = True
+        self.first_key, self.vertices = tuple(self.E.items())[0]
+        self.vertices_count = len(self.E.items())
+        self.passed = [self.first_key]
+
     def __next__(self):
         if self.is_first:
             self.is_first = False
             return self.first_key
-        while len(self.passed) < self.vertices_count:
+        while len(self.passed) < self.vertices_count and self.vertices:
             for vertice in self.vertices:
                 if vertice not in self.passed:
                     self.to_pass.extend(self.E[vertice])
@@ -27,11 +40,6 @@ class Graph:
         raise StopIteration()
 
     def __iter__(self):
-        self.to_pass = []
-        self.is_first = True
-        self.first_key, self.vertices = tuple(self.E.items())[0]
-        self.vertices_count = len(self.E.items())
-        self.passed = [self.first_key]
         return self
 
 
