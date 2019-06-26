@@ -50,7 +50,75 @@ PEP8 соблюдать строго, проверку делаю автотес
 давать логичные подходящие имена.
 """
 
-from classes import HomeworkResult, Student, Teacher
+from datetime import datetime, timedelta
+from collections import defaultdict
+from typing import Optional
+# from classes import HomeworkResult, Student, Teacher
+
+
+class DeadlineError(Exception):
+    """Exception: homework isn't active anymore"""
+
+
+class Homework:
+
+    def __init__(self, text: str, deadline: int):
+        self.text = text
+        self.deadline = timedelta(days=deadline)
+        self.created = datetime.now()
+
+    def is_active(self) -> bool:
+        return datetime.now() - self.created < self.deadline
+
+
+class HomeworkResult:
+
+    def __init__(self, author, homework: Homework, solution: str):
+        if not isinstance(homework, Homework):
+            raise TypeError('You gave a not Homework object')
+        self.author = author
+        self.homework = homework
+        self.solution = solution
+        self.created = datetime.now()
+
+
+class Person:
+
+    def __init__(self, first_name: str, last_name: str):
+        self.first_name = first_name
+        self.last_name = last_name
+
+
+class Student(Person):
+
+    def do_homework(self, homework: Homework, solution: str) -> Optional[HomeworkResult]:
+        if homework.is_active():
+            return HomeworkResult(self, homework, solution)
+        raise DeadlineError('You are late')
+
+
+class Teacher(Person):
+
+    homework_done = defaultdict(list)
+
+    @classmethod
+    def check_homework(cls, result: HomeworkResult) -> bool:
+        condition_length = len(result.solution) > 5
+        key = result.homework
+        if condition_length and key not in cls.homework_done:
+            cls.homework_done[key].append(result)
+        return condition_length
+
+    @classmethod
+    def reset_results(cls, homework: Homework = None):
+        if homework:
+            cls.homework_done.pop(homework)
+        else:
+            cls.homework_done.clear()
+
+    @staticmethod
+    def create_homework(text: str, days: int) -> Homework:
+        return Homework(text, days)
 
 
 if __name__ == '__main__':
