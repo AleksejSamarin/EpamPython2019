@@ -52,7 +52,6 @@ PEP8 соблюдать строго, проверку делаю автотес
 
 from datetime import datetime, timedelta
 from collections import defaultdict
-from typing import Optional
 # from classes import HomeworkResult, Student, Teacher
 
 
@@ -91,7 +90,7 @@ class Person:
 
 class Student(Person):
 
-    def do_homework(self, homework: Homework, solution: str) -> Optional[HomeworkResult]:
+    def do_homework(self, homework: Homework, solution: str) -> HomeworkResult:
         if homework.is_active():
             return HomeworkResult(self, homework, solution)
         raise DeadlineError('You are late')
