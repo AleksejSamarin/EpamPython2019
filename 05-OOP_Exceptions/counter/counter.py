@@ -22,8 +22,7 @@ def instances_counter(cls):
         return cls.counter
 
     def reset_instances_counter(self=None):
-        result = cls.counter
-        cls.counter = 0
+        result, cls.counter = cls.counter, 0
         return result
 
     cls.__init__ = __init__
