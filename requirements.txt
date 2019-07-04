@@ -4,3 +4,4 @@ typing==3.6.6
 requests==2.21.0
 prettytable==0.7.2
 tqdm==4.32.2
+PyYAML==5.1.1
